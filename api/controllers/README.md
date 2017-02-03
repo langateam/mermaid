@@ -1,0 +1,29 @@
+```
+{
+   "push_data":{
+      "pushed_at":1486103963,
+      "images":[
+
+      ],
+      "tag":"latest",
+      "pusher":"langa"
+   },
+   "callback_url":"https://registry.hub.docker.com/u/langa/underbuilt-server/hook/2ad3c4ggja4e341baficaacfige4bd1g2/",
+   "repository":{
+      "status":"Active",
+      "description":"",
+      "is_trusted":false,
+      "full_description":"# underbuilt-server\n\n[![Docker Repository][docker-image]][docker-url]\n[docker-image]: https://img.shields.io/badge/Docker-langa/underbuilt--server-1aaaf8.svg?style=flat-square\n[docker-url]: https://hub.docker.com/r/langa/graphiql.io/\n\n## Overview\n\nThe underbuilt server. Responsible for providing search results, parcel analyses, and parcel reports. Built using [Node](http://nodejs.org), [Trails](https://trailsjs/io), [Mapnik](http://mapnik.org/), and other great open-source modules.\n\n## Deployment\n\n`underbuilt-server` is published to Docker. The following tags are published:\n- `latest` (development)\n- `staging`\n- `production`\n\n```sh\ndocker pull langa/underbuilt-server[:tag]\n```\nBy default, docker pulls the `latest` tag.\n\n## Development\n\nTODO\n\n## REST API\n\n### Reports\n\n#### `GET /parcel/report/{fips}/{apn}.{format}'`\n\nGenerate a parcel report. Formats supported: `html` and `pdf`\n\n#### `/parcel/analysis/{fips}/{apn}`\n\ne.g. \n```\n/parcel/analysis/2272016028/06037\n```\n\nPerform a zoning analysis on a parcel. Returns JSON.\n\n#### `/parcel/terrain/{fips}/{apn}/strata`\n\nPerform a slope strata analysis on a parcel. Returns a JSON array, grouped by 5-degree increments.\n\n### Maps\n\n#### `/map/tile/{z}/{x}/{y}`\n\nRequest a map tile. This URL is compatible with client-side mapping libraries, e.g. Leaflet and OpenLayers.\n\n#### `/parcel/terrain/{fips}/{apn}.png`\n\nGet the terrain/slope analysis map image. Accepts the following querystring params:\n- width\n- height\n\n### Searching\n",
+      "repo_url":"https://hub.docker.com/r/langa/underbuilt-server",
+      "owner":"langa",
+      "is_official":false,
+      "is_private":true,
+      "name":"underbuilt-server",
+      "namespace":"langa",
+      "star_count":0,
+      "comment_count":0,
+      "date_created":1485148142,
+      "repo_name":"langa/underbuilt-server"
+   }
+}
+```
