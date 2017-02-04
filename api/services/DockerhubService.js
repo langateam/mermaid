@@ -14,7 +14,11 @@ module.exports = class DockerhubService extends Service {
     const fromImage = repo.repo_name
     const tag = event.tag
 
-    this.sqs.push('dockerhub-webhooks', { fromImage, tag })
+    this.log.info(`pushing ${fromImage}:${tag} to dockerhub-webhooks queue...`)
+    return new Promise((resolve, reject) => {
+      this.log.info(`pushed ${fromImage}:${tag} to dockerhub-webhooks queue.`)
+      this.sqs.push('dockerhub-webhooks', { fromImage, tag }, resolve)
+    })
   }
 
   pull (fromImage, tag) {
