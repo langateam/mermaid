@@ -18,7 +18,6 @@ module.exports = {
    * requirements.
    */
   packs: [
-    require('trailpack-repl'),
     require('trailpack-router'),
     require('trailpack-hapi')
   ],

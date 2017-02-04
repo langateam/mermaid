@@ -35,14 +35,8 @@ module.exports = class HerokuService extends Service {
   getTag (fromImage, sourceTag) {
     const tags = this.app.config.docker.tags
     const { app, procType } = tags.find(tag => {
-      return tag.expr.test(sourceTag) && fromImage === tag.image
+      return tag.expr.test(sourceTag) && (fromImage === tag.image)
     })
     return `registry.heroku.com/${app}/${procType}`
-  }
-
-  constructor (app) {
-    super(app)
-
-
   }
 }

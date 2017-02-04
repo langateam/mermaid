@@ -2,19 +2,19 @@ module.exports = {
   image: 'langa/underbuilt-server',
   tags: [
     {
-      image: 'underbuilt-server',
+      image: 'langa/underbuilt-server',
       expr: /^latest$/,
       app: 'underbuilt-server-edge',
       procType: 'web'
     },
     {
-      image: 'underbuilt-server',
+      image: 'langa/underbuilt-server',
       expr: /^v([0-9.]+)$/,
       app: 'underbuilt-server-staging',
       procType: 'web'
     },
     {
-      image: 'underbuilt-server',
+      image: 'langa/underbuilt-server',
       expr: /^final$/,
       app: 'underbuilt-server-prod',
       procType: 'web'
