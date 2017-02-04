@@ -22,16 +22,16 @@ module.exports = class DockerhubService extends Service {
   }
 
   pull (fromImage, tag) {
-    const auth = this.app.config.docker.source.auth
+    const { auth, registry } = this.app.config.docker.source
 
-    return this.docker.image.create(auth, { fromImage, tag })
+    return this.docker.image.create(auth, { registry, fromImage, tag })
       .then(DockerhubService.promisifyStream)
   }
 
   push (image, tag) {
-    const auth = this.app.config.docker.dest.auth
+    const { auth, registry } = this.app.config.docker.dest
 
-    return image.push(auth)
+    return image.push(auth, { registry })
       .then(DockerhubService.promisifyStream)
       .then(() => image.remove())
   }
