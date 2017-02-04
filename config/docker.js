@@ -25,7 +25,7 @@ module.exports = {
     auth: {
       username: process.env.DOCKER_SOURCE_AUTH_USERNAME,
       password: process.env.DOCKER_SOURCE_AUTH_PASSWORD,
-      serveraddress: process.env.DOCKER_SOURCE_AUTH_SERVER
+      //serveraddress: process.env.DOCKER_SOURCE_AUTH_SERVER
     }
   },
   dest: {
@@ -33,7 +33,7 @@ module.exports = {
     auth: {
       username: process.env.DOCKER_DEST_AUTH_USERNAME,
       password: process.env.DOCKER_DEST_AUTH_PASSWORD,
-      serveraddress: process.env.DOCKER_DEST_AUTH_SERVER
+      //serveraddress: process.env.DOCKER_DEST_AUTH_SERVER
     }
   }
 }

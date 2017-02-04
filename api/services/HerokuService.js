@@ -26,6 +26,9 @@ module.exports = class HerokuService extends Service {
       .then(() => {
         this.log.info(`deploy of image ${pushTag} successful.`)
       })
+      .catch(err => {
+        this.log.error(err)
+      })
   }
 
   /**
