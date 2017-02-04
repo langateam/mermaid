@@ -24,15 +24,14 @@ module.exports = {
     registry: 'registry.hub.docker.com',
     auth: {
       username: process.env.DOCKER_SOURCE_AUTH_USERNAME,
-      password: process.env.DOCKER_SOURCE_AUTH_PASSWORD,
-      //serveraddress: process.env.DOCKER_SOURCE_AUTH_SERVER
+      password: process.env.DOCKER_SOURCE_AUTH_PASSWORD
     }
   },
   dest: {
     registry: 'registry.heroku.com',
     auth: {
       username: process.env.DOCKER_DEST_AUTH_USERNAME,
-      password: process.env.DOCKER_DEST_AUTH_PASSWORD,
+      password: process.env.DOCKER_DEST_AUTH_PASSWORD
       //serveraddress: process.env.DOCKER_DEST_AUTH_SERVER
     }
   }
