@@ -70,6 +70,5 @@ module.exports = class DockerhubService extends Service {
       stream.on('data', (d) => this.log.debug(d.status, d.progressDetail))
     })
   }
-
 }
 
