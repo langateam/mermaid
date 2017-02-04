@@ -23,6 +23,9 @@ module.exports = class HerokuService extends Service {
         this.log.info(`pushing image ${pushTag} to heroku...`)
         return DockerhubService.push(image, pushTag)
       })
+      .then(() => {
+        this.log.info(`deploy of image ${pushTag} successful.`)
+      })
   }
 
   /**
@@ -35,5 +38,11 @@ module.exports = class HerokuService extends Service {
       return tag.expr.test(sourceTag) && fromImage === tag.image
     })
     return `registry.heroku.com/${app}/${procType}`
+  }
+
+  constructor (app) {
+    super(app)
+
+
   }
 }

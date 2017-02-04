@@ -41,6 +41,16 @@ module.exports = class DockerhubService extends Service {
 
     this.sqs = sqs(this.app.config.sqs.connection)
     this.docker = new Docker()
+
+    if (this.app.config.env === 'worker') {
+      this.sqs.pull('dockerhub-webhooks', (msg, cb) => {
+        this.log.info('deploy sqs message received', msg)
+
+        const { fromImage, tag } = msg
+        this.app.services.HerokuService.deploy(fromImage, tag)
+          .then(() => cb())
+      })
+    }
   }
 
   static promisifyStream (stream) {
