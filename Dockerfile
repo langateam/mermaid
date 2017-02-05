@@ -17,8 +17,9 @@ RUN apt-key adv --fetch-keys https://keybase.io/langa/pgp_keys.asc
 RUN apt-get update -qq
 RUN apt-get upgrade -qq
 
-RUN apt-get install -qq nodejs yarn
+RUN apt-get install -qq nodejs yarn docker-engine
 
-RUN yarn
+#RUN yarn
+RUN npm install
 
 CMD [ "node", "server.js" ]
