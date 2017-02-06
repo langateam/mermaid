@@ -32,12 +32,48 @@ Once mermaid is deployed, configure a dockerhub webhook to notify it when new im
 #### Deploy Mapping
 ```js
 // config/docker.js
-
+module.exports = {
+  // ...
+  tags: [
+    /**
+     * Deploy 'langa/my-image' docker repo as 'langa/my-image-development' when a new image
+     * tagged with "latest" is pushed.
+     */
+    {
+      image: 'langa/my-image',
+      deployImage: 'langa/my-image-development',
+      tag: /^latest$/
+    },
+    
+    /**
+     * Deploy 'langa/my-image' docker repo as 'langa/my-image-production' when a new image
+     * tagged with a version number (e.g. v1.0.0) is pushed.
+     */
+    {
+      image: 'langa/my-image',
+      deployImage: 'langa/my-image-production',
+      tag: /^v([0-9.]+)$/
+    }
+  ]
+}
 ```
 
 #### Repository Credentials
 
-environment vars...
+Set the following environment variables.
+
+| *variable* | *description* | *required* |
+|:---|:---|:---|
+| `DOCKER_ENGINE_VERSION` | version of docker remote api | no |
+| `DOCKER_ENGINE_HOST` | host of docker remote api | yes |
+| `DOCKER_ENGINE_PORT` | port of docker remote api | yes |
+| `DOCKER_SOURCE_AUTH_USERNAME` | username for source docker registry | yes |
+| `DOCKER_SOURCE_AUTH_PASSWORD` | password for source docker registry | yes |
+| `DOCKER_SOURCE_AUTH_SERVER` | source docker registry url | yes |
+| `DOCKER_TARGET_AUTH_USERNAME` | username for target docker registry | yes |
+| `DOCKER_TARGET_AUTH_PASSWORD` | password for target docker registry | yes |
+| `DOCKER_TARGET_AUTH_SERVER` | target/deploy docker registry url | yes |
+
 
 ## License
 MIT
