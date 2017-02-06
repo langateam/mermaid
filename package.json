@@ -1,7 +1,7 @@
 {
   "name": "dockerhub-heroku-pipeline",
   "version": "0.0.1",
-  "description": "Deploy Docker Images to Heroku from Dockerhub Edit",
+  "description": "Automatically deploy images from Dockerhub to Heroku",
   "homepage": "https://github.com/langateam/dockerhub-heroku-pipeline",
   "author": {
     "name": "langateam",

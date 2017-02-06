@@ -1,0 +1,36 @@
+{
+  "name": "Mermaid",
+  "description": "Automatically deploy images from Dockerhub to Heroku",
+  "repository": "https://github.com/langateam/mermaid",
+  "logo": "http://i.imgur.com/bpx5azZ.png",
+  "keywords": [ "heroku", "docker", "dockerhub", "deploy", "trails" ],
+  "env": {
+    "DOCKER_ENGINE_VERSION": {
+      "required": false
+    },
+    "DOCKER_ENGINE_HOST": {
+      "required": true
+    },
+    "DOCKER_ENGINE_PORT": {
+      "required": true
+    },
+    "DOCKER_SOURCE_AUTH_USERNAME": {
+      "required": true
+    },
+    "DOCKER_SOURCE_AUTH_PASSWORD": {
+      "required": true
+    },
+    "DOCKER_SOURCE_AUTH_SERVER": {
+      "required": true
+    },
+    "DOCKER_SOURCE_TARGET_USERNAME": {
+      "required": true
+    },
+    "DOCKER_SOURCE_TARGET_PASSWORD": {
+      "required": true
+    },
+    "DOCKER_SOURCE_TARGET_SERVER": {
+      "required": true
+    }
+  }
+}
