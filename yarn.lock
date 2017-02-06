@@ -119,12 +119,6 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
-big-tree-cli@^0.1.6:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/big-tree-cli/-/big-tree-cli-0.1.6.tgz#444761794af5432f670fb9c437d1b88ccca5a32a"
-  dependencies:
-    colors "*"
-
 bluebird@^3.4.1:
   version "3.4.7"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.4.7.tgz#f72d760be09b7f76d08ed8fae98b289a8d05fab3"
@@ -219,7 +213,7 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
-colors@*, colors@1.0.x:
+colors@1.0.x:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/colors/-/colors-1.0.3.tgz#0433f44d809680fdeb60ed260f1b0c262e82a40b"
 
@@ -940,9 +934,13 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-lodash@4.17.2, lodash@^4.0.0, lodash@^4.13.1, lodash@^4.15.0, lodash@^4.17.0, lodash@^4.17.2, lodash@^4.3.0, lodash@^4.6.1:
+lodash@4.17.2:
   version "4.17.2"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.2.tgz#34a3055babe04ce42467b607d700072c7ff6bf42"
+
+lodash@^4.0.0, lodash@^4.13.1, lodash@^4.17.0, lodash@^4.17.2, lodash@^4.3.0, lodash@^4.6.1:
+  version "4.17.4"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
 lru-cache@2:
   version "2.7.3"
@@ -1476,14 +1474,6 @@ trailpack-hapi@^2.2.0:
     lodash "^4.17.0"
     trailpack v2-latest
     vision "^4.0.1"
-
-trailpack-repl@v2-latest:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/trailpack-repl/-/trailpack-repl-2.1.0.tgz#5fbf43fd0d076d88550184e12b719322ee78ab73"
-  dependencies:
-    big-tree-cli "^0.1.6"
-    lodash "^4.15.0"
-    trailpack v2-latest
 
 trailpack-router@v2-latest:
   version "2.1.0"

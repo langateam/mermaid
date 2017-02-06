@@ -19,7 +19,6 @@
     "request": "^2.79.0",
     "request-promise": "^4.1.1",
     "trailpack-hapi": "^2.2.0",
-    "trailpack-repl": "v2-latest",
     "trailpack-router": "v2-latest",
     "trails": "v2-latest",
     "winston": "^2.3"
