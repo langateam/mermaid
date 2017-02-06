@@ -1,8 +1,6 @@
 'use strict'
 
 const Service = require('trails/service')
-const sqs = require('sqs')
-const Docker = require('node-docker-api').Docker
 
 /**
  * @module DockerhubService
@@ -14,61 +12,80 @@ module.exports = class DockerhubService extends Service {
     const fromImage = repo.repo_name
     const tag = event.tag
 
-    this.log.info(`pushing ${fromImage}:${tag} to dockerhub-webhooks queue...`)
+    //this.log.info(`pushing ${fromImage}:${tag} to dockerhub-webhooks queue...`)
+
+    return this.app.services.HerokuService.deploy(fromImage, tag)
+    /*
     return new Promise((resolve, reject) => {
       this.log.info(`pushed ${fromImage}:${tag} to dockerhub-webhooks queue.`)
       this.sqs.push('dockerhub-webhooks', { fromImage, tag }, resolve)
     })
+    */
   }
 
   pull (fromImage, tag) {
-    const { auth, registry } = this.app.config.docker.source
+    const { auth } = this.app.config.docker.engine
+    const registry = this.app.config.docker.registries.source
 
     this.log.debug('pulling from', auth, registry)
-    return this.docker.image.create(auth, { registry, fromImage: fromImage, tag })
+    return this.docker.image.create(auth, { fromImage: fromImage, tag })
       .then(stream => this.promisifyStream(stream))
       .then(() => this.docker.image.status(`${fromImage}:${tag}`))
   }
 
-  push (image, tag) {
-    const { auth, registry } = this.app.config.docker.dest
+  push (sourceRepo, pushTag) {
+    const { auth } = this.app.config.docker.engine
+    const registry = this.app.config.docker.registries.target
 
-    this.log.debug('pushing to', auth, registry)
-    return image.push(auth, { registry })
+    this.log.debug('pushing to', auth, registry, sourceRepo)
+    return this.docker.image.push(auth, { registry }, sourceRepo)
       .then(stream => this.promisifyStream(stream))
-      .then(() => image.remove())
+      //.then(() => this.docker.image.remove(sourceRepo))
   }
 
-  updateTag (image, tag) {
-    return image.tag(tag)
+  updateTag (sourceRepo, repo) {
+    return this.docker.image.tag({ repo }, sourceRepo)
+  }
+
+  promisifyStream (stream) {
+    return new Promise((resolve, reject) => {
+      stream.on('end', () => {
+        this.log.debug('docker stream status: done')
+        resolve()
+      })
+      stream.on('error', reject)
+      stream.on('data', d => {
+        this.log.debug('docker stream status:', d.toString())
+        try {
+          //const obj = JSON.parse(d.toString())
+          //this.log.debug('docker stream status:', obj.status)
+        }
+        catch (e) {
+          //
+        }
+      })
+    })
   }
 
   constructor (app) {
     super(app)
 
-    this.sqs = sqs(this.app.config.sqs.connection)
-    this.docker = new Docker()
+    //const engine = this.app.config.docker.engine
 
-    if (this.app.config.env === 'worker') {
-      setInterval(() => {
-        this.sqs.pull('dockerhub-webhooks', (msg, cb) => {
-          this.log.info('deploy sqs message received', msg)
+    //this.sqs = sqs(this.app.config.sqs.connection)
+    //this.docker = new Docker({
 
-          const { fromImage, tag } = msg
-          this.app.services.HerokuService.deploy(fromImage, tag)
-            .then(() => cb())
-            .catch(err => this.log.error(err))
-        })
-      }, 5000)
-    }
-  }
+    /*
+    this.log.info('listening for dockerhub webhooks via sqs...')
+    this.sqs.pull('dockerhub-webhooks', (msg, cb) => {
+      this.log.info('deploy sqs message received', msg)
 
-  promisifyStream (stream) {
-    return new Promise((resolve, reject) => {
-      stream.on('end', resolve)
-      stream.on('error', reject)
-      stream.on('data', (d) => this.log.debug(d.status, d.progressDetail))
+      const { fromImage, tag } = msg
+      this.app.services.HerokuService.deploy(fromImage, tag)
+        .then(() => cb())
+        .catch(err => this.log.error(err))
     })
+    */
   }
 }
 

@@ -10,18 +10,19 @@ module.exports = class HerokuService extends Service {
 
   deploy (fromImage, tag) {
     const DockerhubService = this.app.services.DockerhubService
+    const sourceRepo = `${fromImage}:${tag}`
     const pushTag = this.app.services.HerokuService.getTag(fromImage, tag)
 
-    this.log.info(`pulling image ${fromImage}:${tag} from dockerhub...`)
+    this.log.info(`pulling image ${fromImage}:${tag}...`)
 
     return DockerhubService.pull(fromImage, tag)
       .then(image => {
         this.log.info(`tagging image ${fromImage}:${tag} as ${pushTag}...`)
-        return DockerhubService.updateTag(image, pushTag)
+        return DockerhubService.updateTag(sourceRepo, pushTag)
       })
       .then(image => {
-        this.log.info(`pushing image ${pushTag} to heroku...`)
-        return DockerhubService.push(image, pushTag)
+        this.log.info(`pushing image ${pushTag}...`)
+        return DockerhubService.push(sourceRepo, pushTag)
       })
       .then(() => {
         this.log.info(`deploy of image ${pushTag} successful.`)
@@ -31,15 +32,4 @@ module.exports = class HerokuService extends Service {
       })
   }
 
-  /**
-   * Get heroku tag template
-   * see: https://devcenter.heroku.com/articles/container-registry-and-runtime#pushing-an-existing-image
-   */
-  getTag (fromImage, sourceTag) {
-    const tags = this.app.config.docker.tags
-    const { app, procType } = tags.find(tag => {
-      return tag.expr.test(sourceTag) && (fromImage === tag.image)
-    })
-    return `registry.heroku.com/${app}/${procType}`
-  }
 }

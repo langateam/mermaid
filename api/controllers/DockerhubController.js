@@ -13,12 +13,10 @@ module.exports = class DockerhubController extends Controller {
    * see: https://docs.docker.com/docker-hub/webhooks/
    */
   webhook (request, reply) {
-    const { push_data, repository /*, callback_url*/ } = request.payload
+    const { push_data, repository } = request.payload
 
-    this.app.services.DockerhubService.schedulePull(push_data, repository)
+    this.app.services.DockerService.deploy(push_data, repository)
 
     reply({ state: 'success' })
-
-    // POST to callback_url
   }
 }

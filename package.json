@@ -15,8 +15,9 @@
     "trailsjs"
   ],
   "dependencies": {
-    "node-docker-api": "^1.1.3",
-    "sqs": "^2.0.2",
+    "qs": "^6.3.0",
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1",
     "trailpack-hapi": "^2.2.0",
     "trailpack-repl": "v2-latest",
     "trailpack-router": "v2-latest",

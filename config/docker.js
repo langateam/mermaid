@@ -1,38 +1,42 @@
 module.exports = {
-  image: 'langa/underbuilt-server',
+  version: 'v1.25',
   tags: [
     {
       image: 'langa/underbuilt-server',
       expr: /^latest$/,
-      app: 'underbuilt-server-edge',
-      procType: 'web'
+      deployImage: 'underbuilt-server-edge/web'
     },
     {
       image: 'langa/underbuilt-server',
       expr: /^v([0-9.]+)$/,
-      app: 'underbuilt-server-staging',
-      procType: 'web'
+      deployImage: 'underbuilt-server-staging/web'
     },
     {
       image: 'langa/underbuilt-server',
       expr: /^final$/,
-      app: 'underbuilt-server-prod',
-      procType: 'web'
+      deployImage: 'underbuilt-server-prod/web'
     }
   ],
-  source: {
-    registry: 'registry.hub.docker.com',
-    auth: {
-      username: process.env.DOCKER_SOURCE_AUTH_USERNAME,
-      password: process.env.DOCKER_SOURCE_AUTH_PASSWORD
-    }
+  engine: {
+    host: 'docker-build.ec2.langa.io',
+    port: 4550
   },
-  dest: {
-    registry: 'registry.heroku.com',
-    auth: {
-      username: process.env.DOCKER_DEST_AUTH_USERNAME,
-      password: process.env.DOCKER_DEST_AUTH_PASSWORD
-      //serveraddress: process.env.DOCKER_DEST_AUTH_SERVER
+  registries: {
+    source: {
+      host: 'registry.hub.docker.com',
+      auth: {
+        username: process.env.DOCKER_SOURCE_AUTH_USERNAME,
+        password: process.env.DOCKER_SOURCE_AUTH_PASSWORD,
+        serveraddress: process.env.DOCKER_SOURCE_AUTH_SERVER
+      }
+    },
+    target: {
+      host: 'registry.heroku.com',
+      auth: {
+        username: process.env.DOCKER_TARGET_AUTH_USERNAME,
+        password: process.env.DOCKER_TARGET_AUTH_PASSWORD,
+        serveraddress: process.env.DOCKER_TARGET_AUTH_SERVER
+      }
     }
   }
 }
