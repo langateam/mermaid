@@ -45,7 +45,7 @@ MIT
 ## Maintained By
 [<img src='http://i.imgur.com/Y03Jgmf.png' height='64px'>](http://langa.io)
 
-[ci-image]: https://img.shields.io/travis/langateam/graphiql.io/master.svg?style=flat-square
-[ci-url]: https://travis-ci.org/langateam/graphiql.io
+[ci-image]: https://img.shields.io/travis/langateam/mermaid/master.svg?style=flat-square
+[ci-url]: https://travis-ci.org/langateam/mermaid
 [heroku-image]: https://img.shields.io/badge/Deploy%20to%20Heroku-langa/mermaid-6762a6.svg?style=flat-square
 [heroku-url]: https://heroku.com/deploy?template=https://github.com/langateam/mermaid
