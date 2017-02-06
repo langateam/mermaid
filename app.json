@@ -23,13 +23,13 @@
     "DOCKER_SOURCE_AUTH_SERVER": {
       "required": true
     },
-    "DOCKER_SOURCE_TARGET_USERNAME": {
+    "DOCKER_TARGET_AUTH_USERNAME": {
       "required": true
     },
-    "DOCKER_SOURCE_TARGET_PASSWORD": {
+    "DOCKER_TARGET_AUTH_PASSWORD": {
       "required": true
     },
-    "DOCKER_SOURCE_TARGET_SERVER": {
+    "DOCKER_TARGET_AUTH_SERVER": {
       "required": true
     }
   }
