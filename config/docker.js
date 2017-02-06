@@ -1,5 +1,5 @@
 module.exports = {
-  version: 'v1.24',
+  version: process.env.DOCKER_ENGINE_VERSION || 'v1.24',
   tags: [
     {
       image: 'langa/underbuilt-server',
