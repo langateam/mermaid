@@ -18,8 +18,8 @@ module.exports = {
     }
   ],
   engine: {
-    host: 'docker-build.ec2.langa.io',
-    port: 4550
+    host: process.env.DOCKER_ENGINE_HOST,
+    port: process.env.DOCKER_ENGINE_PORT
   },
   registries: {
     source: {
