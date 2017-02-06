@@ -1,5 +1,5 @@
 module.exports = {
-  version: 'v1.25',
+  version: 'v1.24',
   tags: [
     {
       image: 'langa/underbuilt-server',
