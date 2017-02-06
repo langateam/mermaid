@@ -13,13 +13,19 @@ Automatically deploy Docker Images to Heroku from Dockerhub. When new images are
 
 Install Docker on a machine that the instance of mermaid can access over HTTP. Configure docker to listen on an external port so that the Docker Remote API can be accessed from the mermaid instance. The port `4550` is used as the default in the documentation examples.
 
-#### Ubuntu
+Add `-H tcp://0.0.0.0:4550` to `DOCKER_OPTS`.
 
-edit `/lib/systemd/system/docker.service`
-```
+#### Ubuntu/Debian
+
+```sh
+# /lib/systemd/system/docker.service
 
 ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:4550 $DOCKER_OPTS 
 ```
+
+#### Other distros?
+
+Contributions welcome!
 
 ### 2. Setup Dockerhub Webhook
 
